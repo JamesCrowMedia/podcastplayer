@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
-import request from 'superagent';
 import FeedDisplay from '../display/FeedDisplay';
+import request from 'superagent';
 
 class SearchBox extends React.Component {
     constructor(){
@@ -12,11 +12,7 @@ class SearchBox extends React.Component {
         }
     }
 
-    componentDidMount(){
-        
-    }
-
-    updateSearch(){
+    updateSearchTerm(){
         this.search(this.refs.searchBox.value);
     }
 
@@ -29,19 +25,13 @@ class SearchBox extends React.Component {
                 .responseType('json')
                 .buffer(true)
                 .then((response)=>{
-                    this.setState({
-                        resultCount: response,
-                        searchResult: response.body.results
-                    })
+                    // this.setState({
+                    //     resultCount: response,
+                    //     searchResult: response.body.results
+                    // })
+                    this.props.updateSearch(response.body.results)
             })
         }
-    }
-
-    onClickSearch(searchBox){
-        this.setState({searchBox: searchBox }, () => {
-            console.log(searchBox)
-        });
-    
     }
 
     render(){
@@ -50,17 +40,20 @@ class SearchBox extends React.Component {
                 <input className="form-control search-box"
                         ref="searchBox" 
                         type="text" 
-                />
+                        onChange={ (event) => {
+                            event.preventDefault();
+                            } 
+                }/>
                 <Button bsStyle="default"
                         onClick={ (event) => {
                             event.preventDefault();
-                            this.updateSearch()} 
+                            this.updateSearchTerm()} 
                 }>
                     Search
                 </Button>
-               {this.state.searchResult.map((result, index) => {
+               {/*{this.state.searchResult.map((result, index) => {
                     return FeedDisplay(result)
-               })}
+               })}*/}
             </Form>
         )
     }

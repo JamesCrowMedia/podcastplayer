@@ -2,15 +2,21 @@ import React from 'react';
 import SearchResults from '../search/SearchResults';
 
 class MainContent extends React.Component {
+
+
     render(){        
-        if(this.state.searchResult != null) {
+        let searchResult = this.props.searchResult || '';
+
+        if(searchResult[0] != null || searchResult != '') {
             return(
-                <SearchResults />
+                <div className="container main-content col-xs-8 col-lg-6">
+                <SearchResults searchResult={searchResult} />
+                </div>
             )
 
         } else {
             return (
-                <div></div>
+                <div>No Results</div>
             )
         }
     }
