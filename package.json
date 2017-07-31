@@ -3,12 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "moment": "^2.18.1",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.1",
     "react-dom": "^15.6.1",
     "react-media-player": "^0.6.1",
     "react-motion-ui-pack": "^0.10.3",
     "react-scripts": "1.0.10",
+    "react-truncate": "^2.1.5",
+    "striptags": "^3.0.1",
     "superagent": "^3.5.2"
   },
   "scripts": {

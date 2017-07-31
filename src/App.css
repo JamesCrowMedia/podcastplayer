@@ -56,6 +56,43 @@ input, button {
     padding-bottom: 70px;
 }
 
+.sub-header {
+    min-height: 50px;
+}
+
+.vert-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feed-display {
+    margin-bottom: 20px;
+}
+
+table {
+    table-layout: fixed;
+    word-wrap: break-word;
+    overflow: hidden
+}
+
+.episode-table-header {
+    height: 4em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.table-description {
+    overflow: hidden;
+    width: 100%;
+}
+
+.date-text {
+    font-size: .8em
+}
+
 /*-----------------------------*/
 
 .block-with-text {
@@ -73,6 +110,10 @@ input, button {
   margin-right: -1em;
   padding-right: 1em;
   padding-bottom: 1em;
+}
+
+.dev-test {
+    background-color: blue;
 }
 
 /*-----------------------------*/

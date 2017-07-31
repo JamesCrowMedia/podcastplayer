@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
-import FeedDisplay from '../display/FeedDisplay';
 import request from 'superagent';
 
 class SearchBox extends React.Component {
@@ -25,10 +24,6 @@ class SearchBox extends React.Component {
                 .responseType('json')
                 .buffer(true)
                 .then((response)=>{
-                    // this.setState({
-                    //     resultCount: response,
-                    //     searchResult: response.body.results
-                    // })
                     this.props.updateSearch(response.body.results)
             })
         }
@@ -36,25 +31,43 @@ class SearchBox extends React.Component {
 
     render(){
         return(
-            <Form inline>
+            <form className={ this.props.className }>
                 <input className="form-control search-box"
                         ref="searchBox" 
                         type="text" 
+                        onKeyPress={ (event) => {
+                            if (event.which === 13 /* Enter */) {
+                                this.updateSearchTerm();
+                                event.preventDefault();
+                                }
+                            } 
+                        }
                         onChange={ (event) => {
                             event.preventDefault();
+                            if(this.refs.searchBox.value.length > 4){
+                                this.updateSearchTerm()
+                                }
                             } 
                 }/>
-                <Button bsStyle="default"
+                <button className="btn btn-default"
+                        type="button"
                         onClick={ (event) => {
                             event.preventDefault();
-                            this.updateSearchTerm()} 
+                            this.updateSearchTerm()
+                            }} 
+                        onKeyPress={ (event) => {
+                             if (event.which === 13 /* Enter */) {
+                                this.updateSearchTerm();
+                                event.preventDefault();
+                                }
+                            } 
                 }>
                     Search
-                </Button>
+                </button>
                {/*{this.state.searchResult.map((result, index) => {
                     return FeedDisplay(result)
                })}*/}
-            </Form>
+            </form>
         )
     }
 }

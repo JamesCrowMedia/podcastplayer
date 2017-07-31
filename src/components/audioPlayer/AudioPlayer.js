@@ -15,6 +15,7 @@ class AudioPlayer extends Component {
       <Media>
         <div className="audio-player-wrapper">
           <Player
+            autoPlay={true}
             ref={c => this._player = c}
             src={this.props.src}
             useAudioObject
